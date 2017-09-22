@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <style>
+      .a{
+        display:inline;
+        background-color: red;
+        color: red;
+        width: 100px;
+        float: left;
+      }
+      .b{
+        display:inline;
+        background-color: green;
+        color: green;
+        width: 100px;
+        float: left;
+      }
+      a:hover{
+        background-color: white;
+        color: white;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="div" class="div">
+    </div>
+    <script>
+      for(var i = 1;i<1000;i){
+        var a = document.createElement('h1')
+        document.getElementById('div').appendChild(a)
+        a.innerHTML=("A")
+        a.id="id"
+        document.getElementById("id").setAttribute('class', 'a');
+        a.id=null
+        i=i+1
+
+
+        var b = document.createElement('h1')
+        document.getElementById('div').appendChild(b)
+        b.innerHTML=("B")
+        b.id="id"
+        document.getElementById("id").setAttribute('class', 'b');
+        b.id=null
+        i=i+1
+        }
+
+
+
+
+        for(i=1;i<10000;i){
+          setTimeout(function(){
+            document.getElementsByClassName('a').style.backgroundColor="#f3f3f3"
+            document.getElementsByClassName('a').style.color="#f3f3f3"
+            alert('debug')
+          },(2*i-1)*1000)
+          setTimeout(function(){
+            document.getElementsByClassName('b').color='green'
+            document.getElementsByClassName('b').background='green'
+            document.getElementsByClassName('a').color='red'
+            document.getElementsByClassName('a').background='red'
+            alert('debug')
+          },(2*i)*1000)
+
+          i=i+1
+        }
+    </script>
+
+  </body>
+</html>
