@@ -3,65 +3,87 @@
     <style>
       .a{
         display:inline;
+        background-color: blue;
+        color: blue;
+        width: 100px;
+        float: left;
+      }
+      .b{
+
+        display:inline;
         background-color: red;
         color: red;
         width: 100px;
         float: left;
       }
-      .b{
+
+      h1:hover{
+        background-color: white!important;
+        color: white!important;
+      }
+      .a::selection{
         display:inline;
-        background-color: green;
-        color: green;
+        background-color: blue;
+        color: blue;
         width: 100px;
         float: left;
       }
-      a:hover{
-        background-color: white;
-        color: white;
+      .b::selection{
+        display:inline;
+        background-color: red;
+        color: red;
+        width: 100px;
+        float: left;
       }
-
     </style>
+
   </head>
   <body>
     <div id="div" class="div">
     </div>
     <script>
-      for(var i = 1;i<1000;i){
+      for(var i = 1;i<10;i){
         var a = document.createElement('h1')
         document.getElementById('div').appendChild(a)
-        a.innerHTML=("A")
+        a.innerHTML=("HI")
         a.id="id"
         document.getElementById("id").setAttribute('class', 'a');
         a.id=null
+        a.href=""
         i=i+1
 
 
         var b = document.createElement('h1')
         document.getElementById('div').appendChild(b)
-        b.innerHTML=("B")
+        b.innerHTML=("BYE")
         b.id="id"
         document.getElementById("id").setAttribute('class', 'b');
         b.id=null
+        b.href=""
         i=i+1
         }
 
-
-
-
         for(i=1;i<10000;i){
           setTimeout(function(){
-            document.getElementsByClassName('a').style.backgroundColor="#f3f3f3"
-            document.getElementsByClassName('a').style.color="#f3f3f3"
-            alert('debug')
+            document.getElementsByClassName('a')[0].setAttribute("style","background-color:red;color:red")
+            Array.prototype.forEach.call(document.getElementsByClassName('a'),
+                             item => item.setAttribute("style","color: blue;background-color:blue"));
+          },(2*i-0)*1000)
+          setTimeout(function(){
+            document.getElementsByClassName('a')[0].setAttribute("style","background-color:blue;color:blue")
+            Array.prototype.forEach.call(document.getElementsByClassName('a'),
+                             item => item.setAttribute("style","color: red;background-color:red"));
           },(2*i-1)*1000)
           setTimeout(function(){
-            document.getElementsByClassName('b').color='green'
-            document.getElementsByClassName('b').background='green'
-            document.getElementsByClassName('a').color='red'
-            document.getElementsByClassName('a').background='red'
-            alert('debug')
-          },(2*i)*1000)
-
+            document.getElementsByClassName('b')[0].setAttribute("style","background-color:blue;color:blue")
+            Array.prototype.forEach.call(document.getElementsByClassName('b'),
+                             item => item.setAttribute("style","color: blue;background-color:blue"));
+          },(2*i-1)*1000)
+          setTimeout(function(){
+            document.getElementsByClassName('b')[0].setAttribute("style","background-color:red;color:red")
+            Array.prototype.forEach.call(document.getElementsByClassName('b'),
+                             item => item.setAttribute("style","color: red;background-color:red"));
+          },(2*i-0)*1000)
           i=i+1
         }
     </script>
